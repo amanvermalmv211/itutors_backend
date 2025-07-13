@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 export const fetchIsAdmin = async (req, res, next)=>{
     try {
-        if(req.user.type === "admin"){
+        if(req.user.type === "itsauthtoken"){
             next();
             return;
         }

@@ -11,32 +11,32 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 
 // Route 1 : Create user using : POST "/userauth/createuser"
-router.post('/createuser', async (req, res) => {
-    let success = false;
+// router.post('/createuser', async (req, res) => {
+//     let success = false;
 
-    try {
-        const { email, password, type } = req.body;
+//     try {
+//         const { email, password, type } = req.body;
 
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ success, message: "Sorry, a user with this email already exists." });
-        }
+//         const existingUser = await User.findOne({ email });
+//         if (existingUser) {
+//             return res.status(400).json({ success, message: "Sorry, a user with this email already exists." });
+//         }
 
-        const salt = await bcrypt.genSalt(10);
-        const secPass = await bcrypt.hash(password, salt);
+//         const salt = await bcrypt.genSalt(10);
+//         const secPass = await bcrypt.hash(password, salt);
 
-        await User.create({
-            email: email,
-            password: secPass,
-            type: type
-        });
+//         await User.create({
+//             email: email,
+//             password: secPass,
+//             type: type
+//         });
 
-        return res.status(200).json({ success: true, message: "Account has been created!" });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).send("Internal server error occurred.");
-    }
-});
+//         return res.status(200).json({ success: true, message: "Account has been created!" });
+//     } catch (err) {
+//         console.error(err);
+//         return res.status(500).send("Internal server error occurred.");
+//     }
+// });
 
 
 // Route 2 : Authanticate an User using : POST "/user/userauth/loginuser".
